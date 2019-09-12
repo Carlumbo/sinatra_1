@@ -1,5 +1,9 @@
 require 'bundler/setup'
+
 Bundler.require
+
+require 'app/controllers/application_controller'
+require 'app/controllers/posts_controller'
 
 ENV['SINATRA_ENV'] ||= "development"
 
