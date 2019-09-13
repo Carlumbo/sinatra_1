@@ -1,0 +1,18 @@
+<h1>Edit <%= @flower.name %></h1>
+
+<form action="/flowers/<%=@flower.id %>" method="POST">
+  <label> Flower Name </label>
+  <input type="text" name="name" value="<%=@flower.name %>"> </br>
+
+  <label> Flower Species </label>
+  <input type="text" name="Species" value="<%=@flower.species%>"> </br>
+
+  <label> Which garden Can you find this flower in? </label>
+  <select name="flower_garden_id">
+    <% current_user.flower_gardens.each do |bag| %>
+      <option value=<%=garden.id %> <%= "selected" if garden.id==@floweer.flower_garden.id %> ><%= garden.name %></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Update">
+</form>

@@ -7,24 +7,29 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set  :session_secret, "batman"
+    set  :session_secret, "ATimeForFlowers"
   end
 
   get '/' do
-    redirect to '/login'
+    erb :index
+    #welcome to fwitter!!!
   end
 
-  get '/login' do
-     erb :index
+  helpers do
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect "/login?error=You are not logged in, so you can't do that"
+      end
+    end
+
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
+
   end
 
-  post '/hello' do
-    session[:username] = params[:username]
-    session[:password] = params[:password]
-    redirect to '/posts'
-  end
-
-  post '/thanks' do
-    "Thank you for at least trying to save the world!"
-  end
 end

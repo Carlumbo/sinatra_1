@@ -1,0 +1,6 @@
+<%= @flower.name %><br />
+  <%= @flower.manufacturer %> <br />
+  Garden: <a href="/gardens/<%=@flower.flower_garden.id%>"><%= @flower.flower_garden.name %></a> <br />
+  <a href="/flowers/<%=@flower.id%>/edit">Edit</a>
+  <br />
+  <br />

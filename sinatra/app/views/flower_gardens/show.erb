@@ -1,0 +1,12 @@
+<%= @garden.name %><br />
+  <%= @garden.size %> <br />
+
+  <h2>Flowers</h2>
+  <ul>
+  <% @garden.flowers.each do |flower| %>
+    <li><a href="/flowers/<%=flower.id%>"><%= flower.name %></a></li>
+  <% end%>
+  </ul>
+  <a href="/gardens/<%=@garden.id%>/edit">Edit</a>
+  <br />
+  <br />

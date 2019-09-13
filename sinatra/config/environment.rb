@@ -3,7 +3,9 @@ require 'bundler/setup'
 Bundler.require
 
 require 'app/controllers/application_controller'
-require 'app/controllers/posts_controller'
+require 'app/controllers/flower_garden_controller'
+require 'app/controllers/flowers_controller'
+require 'app/controllers/gardener_controller'
 
 ENV['SINATRA_ENV'] ||= "development"
 

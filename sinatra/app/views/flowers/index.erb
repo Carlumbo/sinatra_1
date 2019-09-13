@@ -1,0 +1,7 @@
+<% @flowers.each do |flower| %>
+  <%= flower.name %><br />
+  <%= flower.species %> <br />
+  <a href="/flowers/<%=flower.id%>/edit">Edit</a>
+  <br />
+  <br />
+<% end %>
