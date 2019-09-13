@@ -26,7 +26,7 @@ class GardenerController < ApplicationController
     if params[:username] == "" || params[:password] == ""
       redirect to '/signup'
     else
-      @gardener = Gardener.create(:username => params[:username]. :password => params[:password])
+      @gardener = Gardener.create(username: params[:username], password: params[:password])
       session[:user_id] = @gardener.id
       redirect '/gardens'
     end
@@ -60,4 +60,4 @@ class GardenerController < ApplicationController
     end
   end
 
-end 
+end
