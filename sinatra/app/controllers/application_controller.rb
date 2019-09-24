@@ -1,4 +1,4 @@
-require_relative '../../config/environment'
+#require_relative '../../config/environment'
 
 class ApplicationController < Sinatra::Base
 
@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set  :session_secret, "ATimeForFlowers"
+    set :session_secret, "ATimeForFlowers"
   end
 
   get '/' do
@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      User.find(session[:user_id])
+      Gardener.find(session[:user_id])
     end
 
   end

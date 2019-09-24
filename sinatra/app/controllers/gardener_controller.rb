@@ -7,7 +7,7 @@ class GardenerController < ApplicationController
 
     @gardener = Gardener.find(params[:id])
     if !@gardner.nil? && @gardener == current_gardener
-      erb :'gardner/show'
+      erb :'gardener/show'
     else
       redirect '/gardens'
     end
@@ -16,7 +16,7 @@ class GardenerController < ApplicationController
 
   get '/signup' do
     if !session[:user_id]
-      erb :'gardner/new'
+      erb :'gardeners/new'
     else
       redirect to '/flowers'
     end
