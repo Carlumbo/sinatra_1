@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "flower_gardens", force: :cascade do |t|
     t.string  "name"
     t.integer "size"
-    t.integer "user_id"
+    t.integer "gardener_id"
   end
 
   create_table "flowers", force: :cascade do |t|

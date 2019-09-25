@@ -1,14 +1,15 @@
 <h1>Create a flower Hybrid</h1>
 
 <form action="/flowers" method="POST">
-  <label> FNew Flower </label>
+  <label> New Flower </label>
   <input type="text" name="name"> </br>
 
   <label> Flower Speices </label>
   <input type="text" name="speices"> </br>
 
-  <label> Wich Garden do you wanna place this flower in? </label>
-  <select name="flower_garden_id">
+  <label> Which Garden do you wanna place this flower in? </label>
+    
+    <select name="flower_gardens_id">
     <% current_user.flower_gardens.each do |garden| %>
       <option value=<%=garden.id %>><%= garden.name %></option>
     <% end %>

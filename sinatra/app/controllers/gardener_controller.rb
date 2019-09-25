@@ -44,7 +44,7 @@ class GardenerController < ApplicationController
   post '/login' do
     gardener = Gardener.find_by(:username => params[:username])
     if gardener && gardner.authenticate(params[:password])
-      session[:user_id] = gardener
+      session[:user_id] = gardener.id
       redirect '/gardens'
     else
       redirect to '/signup'
