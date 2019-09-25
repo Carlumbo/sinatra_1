@@ -38,7 +38,7 @@ class FlowersController < ApplicationController
 
   post '/flowers' do
     redirect_if_not_logged_in
-    unless Flower.valid_params?(params)
+    unless Flowers.valid_params?(params)
       redirect '/flowers/new?error=invalid flowers'
     end
     Flowers.create(params)

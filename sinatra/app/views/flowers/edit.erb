@@ -9,7 +9,7 @@
 
   <label> Which garden Can you find this flower in? </label>
   <select name="flower_garden_id">
-    <% current_user.flower_gardens.each do |bag| %>
+    <% current_user.flower_gardens.each do |garden| %>
       <option value=<%=garden.id %> <%= "selected" if garden.id==@floweer.flower_garden.id %> ><%= garden.name %></option>
     <% end %>
   </select>
