@@ -46,4 +46,11 @@ class FlowerGardenController < ApplicationController
     redirect "/gardens"
   end
 
+  get '/gardens/:id/delete' do
+    redirect_if_not_logged_in
+    @garden = FlowerGarden.find(params[:id])
+    @garden.delete 
+    redirect '/gardens'
+  end
+
 end
