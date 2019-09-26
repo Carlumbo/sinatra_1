@@ -5,9 +5,9 @@
   <input type="text" name="name" value="<%=@flower.name %>"> </br>
 
   <label> Flower Species </label>
-  <input type="text" name="Species" value="<%=@flower.species%>"> </br>
+  <input type="text" name="species" value="<%=@flower.species%>"> </br>
 
-  <label> Which garden Can you find this flower in? </label>
+  <label> Which garden can you find this flower in? </label>
   <select name="flower_garden_id">
     <% current_user.flower_gardens.each do |garden| %>
       <option value=<%=garden.id %> <%= "selected" if garden.id==@floweer.flower_garden.id %> ><%= garden.name %></option>
