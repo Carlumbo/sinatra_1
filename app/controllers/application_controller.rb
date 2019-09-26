@@ -1,4 +1,3 @@
-#require_relative '../../config/environment'
 
 class ApplicationController < Sinatra::Base
 
@@ -8,9 +7,14 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "ATimeForFlowers"
+    register Sinatra::Flash
   end
-
+  
   get '/' do
+    
+    flash[:notice] = "Hooray, Flash is working!"
+    puts "************************* FLASH"
+    puts flash
     erb :index
     
   end
