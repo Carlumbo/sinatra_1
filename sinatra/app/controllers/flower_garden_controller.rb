@@ -13,7 +13,7 @@ class FlowerGardenController < ApplicationController
     erb :'flower_gardens/new'
   end
 
-  get '/gardens/edit' do
+  get '/gardens/:id/edit' do
     redirect_if_not_logged_in
     @error_message = params[:error]
     @garden = FlowerGarden.find(params[:id])
@@ -24,13 +24,13 @@ class FlowerGardenController < ApplicationController
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
     unless FlowerGarden.valid_params?(params)
-      redirect "/gardens/#{@garden.id}/edit?errror=invalie garden election"
+      redirect "/gardens/#{@garden.id}/edit?errror=invalie garden selection"
     end
     @garden.update(params.select{|c|c=="name"|| c ="size"})
-    redirect "/garden/#{@garden.id}"
+    redirect "/gardens/#{@garden.id}"
   end
 
-  get "/garden/:id" do
+  get "/gardens/:id" do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
     erb :'flower_gardens/show'
@@ -40,7 +40,7 @@ class FlowerGardenController < ApplicationController
     redirect_if_not_logged_in
 
     unless FlowerGarden.valid_params?(params)
-      redirect "/bags/new?error=invalid garden selection"
+      redirect "/gardens/new?error=invalid garden selection"
     end
     FlowerGarden.create(params)
     redirect "/gardens"

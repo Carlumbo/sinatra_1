@@ -3,7 +3,7 @@ class FlowerGarden < ActiveRecord::Base
   belongs_to :gardener
 
   def self.valid_params?(params)
-    return !params[:name].empty? && !params[:size].empty?
+    return !params[:id].empty? && !params[:size].empty?
   end
 
 
