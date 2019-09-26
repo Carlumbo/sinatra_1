@@ -1,6 +1,15 @@
 <%= @flower.name %><br />
   <%= @flower.species %> <br />
-  Garden: <a href="/gardens/<%=@flower.flower_garden.id%>"><%= @flower.flower_garden.name %></a> <br />
-  <a href="/flowers/<%=@flower.id%>/edit">Edit</a>
+  
+  <form action="/flowers/<%=@flower.id%>/edit" method="POST">
+  <input type="submit" Value="Redo">
+  </form>
+
+  <form action="/flowers" method="POST">
+  <input type="submit" Value="Back To Flowers">
+  </form>
+
+
+
   <br />
   <br />

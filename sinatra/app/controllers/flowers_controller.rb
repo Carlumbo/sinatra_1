@@ -13,7 +13,7 @@ class FlowersController < ApplicationController
     erb :'flowers/new'
   end
 
-  get '/flowers/:id/edit' do
+  post '/flowers/:id/edit' do
     redirect_if_not_logged_in
     @error_message = params[:error]
     @flower = Flower.find(params[:id])
@@ -27,7 +27,7 @@ class FlowersController < ApplicationController
       redirect '/flowers/#{@flower.id}/edit?error=Invalid flower'
     end
     @flower.update(params.select{|s| s =="name" || s="species" || s == 'flower_garden_id'})
-    redirect '/flowers/#{flower.id}'
+    redirect "/flowers/#{@flower.id}"
   end
 
   get '/flowers/:id' do
@@ -45,12 +45,13 @@ class FlowersController < ApplicationController
     redirect '/flowers'
   end
 
-  get '/flowers/:id/delete' do
+
+  post '/flowers/:id/delete' do
     redirect_if_not_logged_in
     @flower = Flower.find(params[:id])
     @flower.delete 
     redirect '/flowers'
   end
+
+
 end
-
-

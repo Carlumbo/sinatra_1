@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
   helpers do
     def redirect_if_not_logged_in
       if !logged_in?
-        redirect "/login?error=You are not logged in, so you can't do that"
+        redirect "/signup?error=Username already taken"
       end
     end
 

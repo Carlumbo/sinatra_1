@@ -15,6 +15,7 @@ class GardenerController < ApplicationController
 
 
   get '/signup' do
+    @error_message = params[:error]
     if !session[:user_id]
       erb :'gardeners/new'
     else
