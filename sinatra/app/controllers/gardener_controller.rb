@@ -1,12 +1,12 @@
 class GardenerController < ApplicationController
 
-  get '/gardeners/id' do
+  get '/gardeners/:id' do
     if !logged_in
       redirect '/gardens'
     end
 
     @gardener = Gardener.find(params[:id])
-    if !@gardner.nil? && @gardener == current_gardener
+    if !@gardener.nil? && @gardener == current_gardener
       erb :'gardener/show'
     else
       redirect '/gardens'
@@ -43,11 +43,11 @@ class GardenerController < ApplicationController
 
   post '/login' do
     gardener = Gardener.find_by(:username => params[:username])
-    if gardener && gardner.authenticate(params[:password])
+    if gardener && gardener.authenticate(params[:password])
       session[:user_id] = gardener.id
       redirect '/gardens'
     else
-      redirect to '/signup'
+      redirect to "/login?error=The Username or Password was incorrect, please retry or Signup in the top left!"
     end
   end
 

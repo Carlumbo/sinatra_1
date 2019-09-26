@@ -1,5 +1,5 @@
-<p> Look upon your wide variety of gardens, <%=@gardner.username %>
-  <% @gardner.flower_gardners.each do |bag| %>
+<p> Look upon your wide variety of gardens, <%=@gardener.username %>
+  <% @gardener.flower_gardeners.each do |garden| %>
   <ul>
     <li><a href="/gardens/<%=garden.id%>"><%= garden.name %></a></li>
   </ul>

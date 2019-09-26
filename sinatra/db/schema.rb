@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 5) do
   create_table "flower_gardens", force: :cascade do |t|
     t.string  "name"
     t.integer "size"
-    t.integer "gardener_id"
+    t.integer "gardeners_id"
   end
 
   create_table "flowers", force: :cascade do |t|
     t.string  "name"
     t.string  "species"
-    t.integer "flower_garden_id"
+    t.integer "flower_gardens_id"
   end
 
   create_table "gardeners", force: :cascade do |t|

@@ -4,10 +4,9 @@
     <title>Flower Selection Picker</title>
   </head>
   <body>
-  <body>
   <nav>
     <% if logged_in? %>
-
+      <a href="/flowers">Flowers</a>
       <a href="/gardens">Gardens</a>
       <a href="/flowers/new">Breed Flowers</a>
       <a href="/gardens/new">Build New Garden</a>
@@ -16,13 +15,13 @@
       <p>Welcome, <%=current_user.username %></p>
 
     <% else %>
-      <a href="/signup">Sign Up</a>
-      <a href="/login"> login </a>
+      <a href="/signup"> Sign Up </a>
+      <a href="/login"> Login </a>
     <%end %>
 
   </nav>
   <div class="container">
-    <h1>Planted Earth</h1>
+    <h1>Flowers and Gardens</h1>
     <% if !@error_message.nil? %>
     <div class="alert alert-warning">
       <%= @error_message %>
