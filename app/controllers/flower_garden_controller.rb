@@ -13,12 +13,14 @@ class FlowerGardenController < ApplicationController
     erb :'flower_gardens/new'
   end
 
-  get '/gardens/:id/edit' do
+  post '/gardens/:id/edit' do
     redirect_if_not_logged_in
     @error_message = params[:error]
     @garden = FlowerGarden.find(params[:id])
     erb :'flower_gardens/edit'
   end
+
+
 
   post '/gardens/:id' do
     redirect_if_not_logged_in
