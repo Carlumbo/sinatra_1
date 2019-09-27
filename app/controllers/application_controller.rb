@@ -11,18 +11,14 @@ class ApplicationController < Sinatra::Base
   end
   
   get '/' do
-    
-    flash[:notice] = "Hooray, Flash is working!"
-    puts "************************* FLASH"
-    puts flash
     erb :index
-    
   end
 
   helpers do
     def redirect_if_not_logged_in
       if !logged_in?
-        redirect "/signup?error=Username already taken"
+        flash[:message]= "Usermname Already Taken"
+        redirect "/signup"
       end
     end
 

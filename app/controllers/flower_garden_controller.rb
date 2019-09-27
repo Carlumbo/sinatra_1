@@ -24,7 +24,7 @@ class FlowerGardenController < ApplicationController
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
     unless FlowerGarden.valid_params?(params)
-      redirect "/gardens/#{@garden.id}/edit?errror=invalie garden selection"
+      redirect "/gardens/#{@garden.id}/edit?errror=invalid garden selection"
     end
     @garden.update(params.select{|c|c=="name"|| c ="size"})
     redirect "/gardens/#{@garden.id}"

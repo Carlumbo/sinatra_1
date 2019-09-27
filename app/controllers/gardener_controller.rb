@@ -15,7 +15,7 @@ class GardenerController < ApplicationController
 
 
   get '/signup' do
-    flash[:notice] = "Hooray, Flash is working!"
+    
     @error_message = params[:error]
     if !session[:user_id]
       erb :'gardeners/new'
@@ -26,10 +26,12 @@ class GardenerController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:password] == ""
+      
       redirect to '/signup'
     else
       @gardener = Gardener.create(username: params[:username], password: params[:password])
       session[:user_id] = @gardener.id
+      flash[:message] = "Thanks for making an account!"
       redirect '/gardens'
     end
   end
@@ -46,10 +48,12 @@ class GardenerController < ApplicationController
   post '/login' do
     gardener = Gardener.find_by(:username => params[:username])
     if gardener && gardener.authenticate(params[:password])
+      flash[:message] = "Login Successful!"
       session[:user_id] = gardener.id
       redirect '/gardens'
     else
-      redirect to "/login?error=The Username or Password was incorrect, please retry or Signup in the top left!"
+      flash[:message] = "The Username or Password was incorrect, please retry or Signup in the top left!"
+      redirect to "/login"
     end
   end
 

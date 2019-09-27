@@ -23,11 +23,16 @@
   </nav>
   <div class="container">
     <h1>Flowers and Gardens</h1>
-    <% if !@error_message.nil? %>
-    <div class="alert alert-warning">
-      <%= @error_message %>
+    
+  
+
+  <% flash.keys.each do |type| %>
+    <div data-alert class="flash <%= type %> alert-box radius">
+      <%= flash[type] %>
+      <a href="" class="close">&times;</a>
     </div>
   <% end %>
+  
     <%= yield %>
   </div>
   </body>
