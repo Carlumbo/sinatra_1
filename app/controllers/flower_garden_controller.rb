@@ -4,7 +4,6 @@ class FlowerGardenController < ApplicationController
   get '/gardens' do
     redirect_if_not_logged_in
     @gardens = FlowerGarden.all
-    @gardens.last.gardener_id = current_user.id
     erb :'flower_gardens/index'
   end
 
@@ -15,11 +14,10 @@ class FlowerGardenController < ApplicationController
 
   post '/gardens/:id/edit' do
   @garden = FlowerGarden.find(params[:id])
-  binding.pry
-   if current_user == @garden.gardener_id
+   if current_user.id == @garden.gardener_id
     erb :'flower_gardens/edit'
    else 
-    flash[:message] = "That Garden doesnt belong to you"
+    flash[:message] = "That Garden doesnt belong to you\n"
     redirect "/gardens"
    end 
   end
@@ -50,15 +48,24 @@ class FlowerGardenController < ApplicationController
       flash[:message] = "invalid garden selection"
       redirect "/gardens/new"
     end
-    FlowerGarden.create(params)
+    @gardens = FlowerGarden.create(params)
+    @gardens.gardener_id = current_user.id
+    @gardens.save
     redirect "/gardens"
   end
 
-  get '/gardens/:id/delete' do
+  post '/gardens/:id/delete' do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
+    if current_user.id == @garden.gardener_id
+    @garden = FlowerGarden.find(params[:id])
     @garden.delete 
+    flash[:message] = "Garden Deconstructed!"
     redirect '/gardens'
+    else 
+      flash[:message] = "Hey that's not yours to destroy!\n"
+     redirect '/gardens'
+    end 
   end
 
 end
