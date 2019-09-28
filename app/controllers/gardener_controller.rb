@@ -1,12 +1,12 @@
 class GardenerController < ApplicationController
 
   get '/gardeners/:id' do
-    if !logged_in
+    if !logged_in?
       redirect '/gardens'
     end
 
     @gardener = Gardener.find(params[:id])
-    if !@gardener.nil? && @gardener == current_gardener
+    if !@gardener.nil? && @gardener == current_use
       erb :'gardener/show'
     else
       redirect '/gardens'
@@ -15,8 +15,6 @@ class GardenerController < ApplicationController
 
 
   get '/signup' do
-    
-    @error_message = params[:error]
     if !session[:user_id]
       erb :'gardeners/new'
     else
@@ -37,7 +35,6 @@ class GardenerController < ApplicationController
   end
 
   get '/login' do
-    @error_message = params[:error]
     if !session[:user_id]
       erb :'gardeners/login'
     else

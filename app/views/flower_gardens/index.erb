@@ -3,11 +3,11 @@
   <%= garden.name %> <br />
   <%= garden.size %> <br />
 
-  <form action="/gardens/<%=garden.id%>/edit" method="GET">
+  <form action="/gardens/<%=garden.id%>/edit" method="POST">
   <input type="submit" value="Edit">
   </form>
 
-  <form action="/gardens/<%=garden.id%>/delete" method="GET">
+  <form action="/gardens/<%=garden.id%>/delete" method="POST">
   <input type="submit" value="Destroy">
   </form>
 
