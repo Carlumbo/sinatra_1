@@ -1,6 +1,30 @@
-<p> Look upon your wide variety of gardens, <%=@gardner.username %>
-  <% @gardner.flower_gardners.each do |bag| %>
-  <ul>
-    <li><a href="/gardens/<%=garden.id%>"><%= garden.name %></a></li>
-  </ul>
-  <% end %>
+<div>
+<h3>This is your community profile</h3><br //>
+      <% i = 0 %> 
+      <p>These are all the gardens you have contributed to the community:
+      <% @gardens.each do |garden| %>
+        <% if garden.gardener_id == current_user.id%>
+        
+        <label>Name:</label>
+        <%= garden.name %> <br />
+        <label>Size:</label>
+        <%= garden.size %> sq. ft<p> <br /
+        <% i += 1 %>
+        <%else%>
+      <% end %>
+       <% end %>
+
+       <% if i = 0 %>
+       <br //>
+         <p>Looks like we dont have anything here, but you can alawys build one</p>
+         <form action='/gardens/new' method="GET">
+         <input type='submit' value="Build New Garden">
+         </form>
+         
+        <form action='/gardens' method="GET">
+        <input type='submit' value="Go Back to Gardens">
+        </form>
+       <% else %>
+       <%end%>
+      
+  </div>

@@ -1,16 +1,27 @@
-<%= @garden.name %><br />
-  <%= @garden.size %> <br />
-  <ul>
-  <% @garden.flowers.each do |flower| %>
-    <li><a href="/flowers/<%=flower.id%>"><%= flower.name %></a></li>
-  <% end%>
-  </ul>
- 
 
-  <form action="/gardens/<%=@garden.id%>/edit?" method="POST">
-  <input type="submit" value="Redo">
-  </form>
+    <label>Name:</label>
+    <%= @garden.name %> <br />
+    <p><label>Size:</label>
+    <%= @garden.size %> sq. ft<p> <br />
+    
+   <% if @garden.gardener_id == current_user.id %>
+    Welcome back to your garden, <%=current_user.username%>!
 
 
-  <br />
-  <br />
+    <form action='/gardens/<%=@garden.id%>/edit' method="POST">
+    <input type='submit' value="Rebuild">
+    </form>
+
+    <form action='/gardens' method="GET">
+    <input type='submit' value="Go back to gardens">
+    </form>
+   <%else%>
+    Welcome to this garden!
+    <form action='/gardens' method="GET">
+    <input type='submit' value="Go back to gardens">
+    </form>
+
+   <%end%>
+
+
+

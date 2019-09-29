@@ -17,14 +17,14 @@ class FlowerGardenController < ApplicationController
    if current_user.id == @garden.gardener_id
     erb :'flower_gardens/edit'
    else 
-    flash[:message] = "That Garden doesnt belong to you\n"
+    flash[:message] = "That garden doesnt belong to you\n"
     redirect "/gardens"
    end 
   end
 
 
-
-  post '/gardens/:id' do
+=begin
+  post '/gardens' do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
     unless FlowerGarden.valid_params?(params)
@@ -35,11 +35,20 @@ class FlowerGardenController < ApplicationController
     redirect "/gardens/#{@garden.id}"
   end
 
+=end 
+
+  get "/gardens/show" do
+    redirect_if_not_logged_in
+    @gardens = FlowerGarden.all
+    erb :'flower_gardens/show'
+  end
+
   get "/gardens/:id" do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
     erb :'flower_gardens/show'
   end
+
 
   post "/gardens" do
     redirect_if_not_logged_in
@@ -53,7 +62,7 @@ class FlowerGardenController < ApplicationController
     @gardens.save
     redirect "/gardens"
   end
-
+    
   post '/gardens/:id/delete' do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])

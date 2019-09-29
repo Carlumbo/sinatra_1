@@ -2,16 +2,17 @@ class GardenerController < ApplicationController
 
   get '/gardeners/:id' do
     if !logged_in?
-      redirect '/gardens'
+      erb 'gardens'
     end
-
     @gardener = Gardener.find(params[:id])
-    if !@gardener.nil? && @gardener == current_use
-      erb :'gardener/show'
+    @gardens = FlowerGarden.all
+    if !@gardener.nil? && @gardener == current_user
+      erb :'gardeners/show'
     else
       redirect '/gardens'
     end
   end
+
 
 
   get '/signup' do

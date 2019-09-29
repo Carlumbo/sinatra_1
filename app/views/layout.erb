@@ -7,10 +7,9 @@
   <body>
   <nav>
     <% if logged_in? %>
-      <a href="/flowers">Flowers</a>
-      <a href="/gardens">Gardens</a>
-      <a href="/flowers/new">Breed Flowers</a>
       <a href="/gardens/new">Build New Garden</a>
+      <a href="/gardens">Community Gardens</a>
+      <a href="/gardeners/<%=current_user.id%>">Your Gardens</a>
 
       <a href="/logout"> Log Out </a>
       <p>Welcome, <%=current_user.username %></p>
@@ -22,7 +21,7 @@
 
   </nav>
   <div class="container">
-    <h1>Flowers and Gardens</h1>
+    <h1>Garden World</h1>
     
   
 
