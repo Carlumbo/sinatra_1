@@ -1,14 +1,14 @@
 <div>
 <h3>This is your community profile</h3><br //>
       <% i = 0 %> 
-      <p>These are all the gardens you have contributed to the community:
+      <p>These are all the gardens you have contributed to the community:<br /></p>
       <% @gardens.each do |garden| %>
         <% if garden.gardener_id == current_user.id%>
         
         <label>Name:</label>
         <%= garden.name %> <br />
         <label>Size:</label>
-        <%= garden.size %> sq. ft<p> <br /
+        <%= garden.size %> sq. ft<p> <br />
         <% i += 1 %>
         <%else%>
       <% end %>
@@ -22,7 +22,7 @@
          </form>
          
         <form action='/gardens' method="GET">
-        <input type='submit' value="Go Back to Gardens">
+        <input type='submit' value="Go To All Gardens">
         </form>
        <% else %>
        <%end%>
