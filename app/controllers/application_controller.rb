@@ -22,6 +22,14 @@ class ApplicationController < Sinatra::Base
       end
     end
 
+    def valid_user?
+      if current_user.id != @garden.gardener_id
+        flash[:message]=  "You can not edit this garden!"
+        redirect '/gardens'
+      else
+      end     
+    end  
+
     def logged_in?
       !!session[:user_id]
     end

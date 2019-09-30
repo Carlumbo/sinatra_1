@@ -19,23 +19,32 @@
 
   <% @gardens.each do |garden| %>
   <div>
+    <% if current_user.id == garden.gardener_id %>
     <label>Garden Name:</label> <%= garden.name %>
     <p><label>Size:</label><%= garden.size %> sq.ft</p>
   </div>
   <div>  
-
-    <form action ="/gardens/<%=garden.id%>" method="GET">
-    <input type="submit" value="Visit">
-    </form>
-
-    <form action="/gardens/<%=garden.id%>/edit" method="POST">
-    <input type="submit" value="Edit">
-    </form>
+    
+    <a href = "/gardens/<%=garden.id%>">Visit</a>
+  
+    <a href ="/gardens/<%=garden.id%>/edit">Edit</a>
+    
 
     <form action="/gardens/<%=garden.id%>/delete" method="post">
+    <input name="_method" type="hidden" value="DELETE"/>
     <input type="submit" value="Deconstruct">
     </form>
-    </p>
+    </div>
+    <%else%>
+    <label>Garden Name:</label> <%= garden.name %>
+    <p><label>Size:</label><%= garden.size %> sq.ft</p>
+  </div>
+     <div> 
+
+    <a href = "/gardens/<%=garden.id%>">Visit</a>
+
+    </div>
+    <%end %>
 
 
     <br />

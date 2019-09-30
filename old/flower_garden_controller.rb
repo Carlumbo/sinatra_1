@@ -13,7 +13,7 @@ class FlowerGardenController < ApplicationController
     erb :'flower_gardens/new'
   end
 
-  get '/gardens/:id/edit' do
+  post '/gardens/:id/edit' do
   @garden = FlowerGarden.find(params[:id])
    if current_user.id == @garden.gardener_id
     erb :'flower_gardens/edit'
@@ -27,13 +27,12 @@ class FlowerGardenController < ApplicationController
   patch '/gardens/:id' do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
-    valid_user?
     unless FlowerGarden.valid_params?(params)
       flash[:message] = "invalid garden selection"
       redirect "/gardens/#{@garden.id}/edit"
     end
-    @garden.update(params.select{|c|c =="name"|| c =="size"})
-    redirect "/gardens"
+    @garden.update(params.select{|c|c=="name"|| c ="size"})
+    redirect "/gardens/#{@garden.id}"
   end
 
 
@@ -68,7 +67,6 @@ class FlowerGardenController < ApplicationController
   delete '/gardens/:id/delete' do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
-    valid_user?
     if current_user.id == @garden.gardener_id
     @garden = FlowerGarden.find(params[:id])
     @garden.delete 
