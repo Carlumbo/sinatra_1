@@ -16,7 +16,7 @@
     <input type='submit' value="Go back to gardens">
     </form>
    <%else%>
-    Welcome to this garden!
+    Welcome to this garden, created by <%=@gardeners.find(@garden.gardener_id).username%>!
     <form action='/gardens' method="GET">
     <input type='submit' value="Go back to gardens">
     </form>

@@ -7,6 +7,7 @@ class FlowerGardenController < ApplicationController
     erb :'flower_gardens/index'
   end
 
+
   get '/gardens/new' do
     redirect_if_not_logged_in
     erb :'flower_gardens/new'
@@ -23,8 +24,7 @@ class FlowerGardenController < ApplicationController
   end
 
 
-=begin
-  post '/gardens' do
+  patch '/gardens/:id' do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
     unless FlowerGarden.valid_params?(params)
@@ -35,7 +35,6 @@ class FlowerGardenController < ApplicationController
     redirect "/gardens/#{@garden.id}"
   end
 
-=end 
 
   get "/gardens/show" do
     redirect_if_not_logged_in
@@ -46,6 +45,7 @@ class FlowerGardenController < ApplicationController
   get "/gardens/:id" do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
+    @gardeners = Gardener.all
     erb :'flower_gardens/show'
   end
 
@@ -62,7 +62,8 @@ class FlowerGardenController < ApplicationController
     @gardens.save
     redirect "/gardens"
   end
-    
+
+
   post '/gardens/:id/delete' do
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])

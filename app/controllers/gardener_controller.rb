@@ -26,6 +26,7 @@ class GardenerController < ApplicationController
   post '/signup' do
     if params[:username] == "" || params[:password] == ""
       
+      flash[message] = "No Username or Password was detected, please retry"
       redirect to '/signup'
     else
       @gardener = Gardener.create(username: params[:username], password: params[:password])

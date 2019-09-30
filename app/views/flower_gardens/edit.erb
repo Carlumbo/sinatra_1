@@ -2,7 +2,7 @@
 
 <img src= "https://www.gardendesign.com/pictures/images/973x490Exact_0x58/site_3/colorful-flowers-terraced-hillside-garden-design_11850.jpg">
 
-<form action="/gardens" method="POST">
+<form action="/gardens/<%=@garden.id %>" method="PATCH">
 <label> Garden Name:</label>
 <input type="text" name="name" value="<%=@garden.name %>"> <br />
 <label>Size of Flower Garden </label>
