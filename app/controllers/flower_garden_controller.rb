@@ -14,6 +14,7 @@ class FlowerGardenController < ApplicationController
   end
 
   get '/gardens/:id/edit' do
+    record_not_found
   @garden = FlowerGarden.find(params[:id])
    if current_user.id == @garden.gardener_id
     erb :'flower_gardens/edit'
@@ -26,6 +27,7 @@ class FlowerGardenController < ApplicationController
 
   patch '/gardens/:id' do
     redirect_if_not_logged_in
+    record_not_found
     @garden = FlowerGarden.find(params[:id])
     valid_user?
     unless FlowerGarden.valid_params?(params)
@@ -44,6 +46,7 @@ class FlowerGardenController < ApplicationController
   end
 
   get "/gardens/:id" do
+    record_not_found
     redirect_if_not_logged_in
     @garden = FlowerGarden.find(params[:id])
     @gardeners = Gardener.all
@@ -67,6 +70,7 @@ class FlowerGardenController < ApplicationController
 
   delete '/gardens/:id/delete' do
     redirect_if_not_logged_in
+    record_not_found
     @garden = FlowerGarden.find(params[:id])
     valid_user?
     if current_user.id == @garden.gardener_id

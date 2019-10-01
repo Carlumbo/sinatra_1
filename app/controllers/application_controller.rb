@@ -29,6 +29,14 @@ class ApplicationController < Sinatra::Base
       else
       end     
     end  
+    
+    def record_not_found
+    FlowerGarden.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:message] = 'That record was not found'
+      redirect '/gardens'
+    end  
+
 
     def logged_in?
       !!session[:user_id]
